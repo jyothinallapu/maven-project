@@ -21,5 +21,10 @@ pipeline{
                build job: 'Deploy-to-staging'
             }
         }
+        stage ('Deploy to production'){
+           steps {
+              build job: 'Deploy-to-production'
+           }
+       }
     }
 }
