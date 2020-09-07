@@ -1,17 +1,22 @@
 pipeline{
     agent any
-    stages{
-        stage('Build'){
-            steps {
-                sh 'mvn clean package'
-            }
-            post {
-                success {
-                    echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/targets/*.war'
-                }
-            }
-        }
-    }
+              try{
+                 emailext body:'testing!', subject: 'starting jenkins', to: jyothi.kasireddy20@gmail.com
+                 stages{
+                     stage('Build'){
+                         steps {
+                            sh 'mvn clean package'
+                         }
+                         post {
+                            success {
+                                  echo 'Now Archiving...'
+                                  archiveArtifacts artifacts: '**/targets/*.war'
+                            }
+                         }
+                     }
+                 }
+              } catch(err){
+                 emailext body:"{err}", subject: 'error occurred', to: jyothi.kasireddy20@gmail.com
+              }
 }
             
