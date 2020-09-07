@@ -1,5 +1,4 @@
-pipeline{
-    agent any
+node{
               try{
                  emailext body:'testing!', subject: 'starting jenkins', to: 'jyothi.kasireddy20@gmail.com'
                  stages{
